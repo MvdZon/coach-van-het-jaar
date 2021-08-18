@@ -1,0 +1,223 @@
+body[subleague="Babbelcoach"] #subleague-ranking-table tr[role="row"]:nth-child(1){
+	background: #40ff004d;
+}
+
+body[subleague="Babbelcoach"] #subleague-ranking-table tr[role="row"]:nth-child(2) {
+	background: #30c3004d;
+}
+
+body[subleague="Babbelcoach"] #subleague-ranking-table tr[role="row"]:nth-child(3) {
+	background: #52a2374d;
+}
+
+body[subleague="Babbelcoach"] #subleague-ranking-table tr[role="row"]:nth-child(9){
+	background: #ffad564d;
+}
+
+body[subleague="Babbelcoach"] #subleague-ranking-table tr[role="row"]:nth-child(10){
+	background: #ff484f4d;
+}
+
+body[subleague="Babbelcoach"] #subleague-ranking-table tr[role="row"]:nth-child(11){
+	background: #ff484f4d;
+}
+
+body[subleague="Babbelcoach"] #subleague-ranking-table tr[role="row"]:nth-child(12){
+	background: #ff272f4d;
+}
+
+body[subleague="Babbelcoach"] #subleague-ranking-table tr[role="row"]:nth-child(13){
+	background: #ff272f4d;
+}
+
+body[subleague="Babbelcoach"] #subleague-ranking-table tr[role="row"]:nth-child(14){
+	background: #ff00094d;
+}
+
+#subleague-ranking-table tr.me td {
+    background-color: #4747474d!important;
+}
+
+#subleague-ranking-table td {
+    background-color: transparent!important;
+}
+
+.highest td:nth-child(3) a,
+.highest td:nth-child(4) {
+	color: green !important;
+}
+
+.lowest td:nth-child(3) a,
+.lowest td:nth-child(4){
+	color: red !important;
+}
+
+.transfers {
+	display: flex;
+	justify-content: space-between;
+}
+
+.leagues-table tbody tr td a {
+	line-height: 30px !important;
+}
+
+.transfers p {
+	margin: 0;
+    padding: 0;
+    font-size: 10px;
+    line-height: 20px;
+}
+
+.custom-table tbody tr td:first-of-type {
+	width: 15% !important;
+}
+
+.custom-table tbody tr td:nth-child(3) {
+	width: 29% !important;
+}
+
+.custom-table tbody tr td:nth-child(4) {
+	width: 14% !important;
+}
+
+.has-player-in-team {
+	background: #5c83da !important;
+}
+
+.dataTables_wrapper .search-area .search { 
+	margin-bottom: 10px;
+}
+
+textarea {
+	overflow: auto !important;
+	height: 500px !important;
+}
+
+.champion {
+	color: #ffe740;
+    font-size: 20px !important;
+}
+
+.achievements i {
+    padding: 5px !important;
+}
+
+.period-winner {
+	color: green;
+}
+
+.highest-score {
+	color: orange;
+}
+
+.leagues-table.ranking tbody tr td.achievements {
+	padding-right: 0 !important;
+}
+
+.statistics-screen {
+	position: fixed;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	background: white;
+	padding: 8px;
+	box-shadow: 0 0 2px #000;
+    z-index: 1000000000000;
+}
+
+.statistics-screen th {
+	cursor: pointer;
+}
+
+.statistics-screen th,
+.statistics-screen td {
+	padding: 5px;
+}
+
+.statistics-screen td:not(:first-of-type),
+.statistics-screen th:not(:first-of-type) {
+	text-align: center;
+}
+
+.teams-dropdown {
+	display: block !important;
+	cursor: pointer;
+	background: white !important;
+    border: 1px solid #d8d8d8;
+    box-shadow: 0 0 black !important;
+    padding: 6px 8px 6px 10px !important;
+    margin: 0;
+}
+
+.teams-dropdown option {
+	background: #fff !important;
+	height: 50px;
+	padding: 30px;
+}
+
+.subleague-header {
+	position: relative;
+}
+
+.list-icon {
+	position: absolute;
+	right: 20px;
+	top: 20px;
+	font-size: 20px !important;
+    border: 1px solid;
+	border-radius: 3px;
+	cursor: pointer;
+    padding: 8px;
+}
+
+.list-icon:hover {
+	background: #fefefe;
+	transition: 0.2s;
+}
+
+.leave-exit-screen-icon {
+	position: absolute;
+	right: -10px;
+    top: -10px;
+    font-size: 20px;
+    border-radius: 50%;
+    border: 1px solid;
+    width: 30px;
+	height: 30px;
+	display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    background: white;
+    transition: 0.2s;
+}
+
+.achievements {
+	display: none;
+}
+
+.leave-exit-screen-icon:hover {
+	transform: scale(1.1);
+}
+
+.custom-table tbody tr td:nth-of-type(7) {
+	width: 15%;
+}
+
+.custom-table tbody tr td:nth-of-type(6) {
+	width: 10%;
+}
+
+@media only screen and (max-width: 600px) {
+	.statistics-screen {
+		font-size: 9px;
+	}
+}
+
+.positive {
+	color: green !important;
+}
+
+.negative {
+	color: red !important;
+}
