@@ -9,13 +9,8 @@
 	function createStateObject(){
 		state[subleagueName] = {};
 
-		state[`${subleagueName}-pointDifference`] = {};
-		state[`${subleagueName}-previousPoints`] = {};
-
 		coachIds.forEach(coachId => {
 			state[subleagueName][coachId] = {};
-			state[`${subleagueName}-pointDifference`][coachId] = 0;
-			state[`${subleagueName}-previousPoints`][coachId] = 0;
 
 			for(let i = 1; i<=34; i++) {
 				state[subleagueName][coachId][i] = [];
@@ -28,104 +23,10 @@
 		else return `teamOverviewAdmin`;
 	}
 
-	function processAdminSettings(){
-		let $tags = $(`tr[role="row"] td:nth-child(4)`);
-		let description =  $(`.description`).text();
-		let lowestScores = description.match(/==<(.*)>==/g);
-		let highestScores = description.match(/=={(.*)}==/g);
-	//	let champions = description.match(/==\|(.*)\|==/g);
-	//	let highestScorePreviousYears = description.match(/===(.*)===/g);
-	//	let periodWinners = description.match(/==;(.*);==/g);
-		
-		if(lowestScores) {
-			lowestScores.forEach(name => {
-				let coachName = name.replace(`==<`, ``).replace(`>==`, ``);
-
-				$tags.each(function(){
-					let $this = $(this);
-
-					if ($this.text() === coachName) {
-						$this.closest(`tr`).addClass(`lowest`);
-					}
-				});
-			});
-		}
-
-		if(highestScores) {
-			highestScores.forEach(name => {
-				let coachName = name.replace(`=={`, ``).replace(`}==`, ``);
-
-				$tags.each(function(){
-					let $this = $(this);
-					
-					if ($this.text() === coachName) {
-						$this.closest(`tr`).addClass(`highest`);
-					}
-				});
-			});
-		}
-
-	/*	if(champions) {
-			champions.forEach(champ => {
-				let coachName = champ.replace(`==|`, ``).replace(`|==`, ``);
-
-				$tags.each(function(){
-					let $this = $(this);
-					
-					if ($this.text() === coachName) {
-						$this.closest(`tr`).find(`.achievements`)
-							.append(`<i class="fa fa-trophy champion" title="Kampioen"></i>`);
-					}
-				});
-			});
-		}
-
-		if(highestScorePreviousYears) {
-			highestScorePreviousYears.forEach(champ => {
-				let coachName = champ.replace(`==|`, ``).replace(`|==`, ``);
-
-				$tags.each(function(){
-					let $this = $(this);
-					
-					if ($this.text() === coachName) {
-						$this.closest(`tr`).find(`.achievements`)
-							.append(`<i class="fa fa-circle period-winner" title="Periode winnaar"></i>`);
-					}
-				});
-			});
-		}
-
-		if(periodWinners) {
-			periodWinners.forEach(champ => {
-				let coachName = champ.replace(`==|`, ``).replace(`|==`, ``);
-
-				$tags.each(function(){
-					let $this = $(this);
-					
-					if ($this.text() === coachName) {
-						$this.closest(`tr`).find(`.achievements`)
-							.append(`<i class="fa fa-bolt highest-score" title="Hoogste rondescore"></i>`);
-					}
-				});
-			});
-		}*/
- 		
-		let descriptionHTML = $(`.description`).html();
-		
-		descriptionHTML = descriptionHTML
-			.replace(/=={.*?}==/g, '')	
-			.replace(/==\|.*?\|==/g, '')
-			.replace(/===.*?===/g, '')
-			.replace(/==;*?==;/g, '')
-			.replace(/==&lt;.*?&gt;==/g, '');
-		
-		$(".description").html(descriptionHTML);
-	}
-	
 	function getPlayerTeams(){
 		coachIds.forEach(coachId => {
 			let coach = state[subleagueName][coachId];
-
+			
 			for(let i = 1; i <= currentRound; i++) {
 				let round = coach[i];
 
@@ -145,27 +46,6 @@
 		});
 		
 		$.ajax({url: ``}); // Trigger the ajaxStop function no matter what happens
-	}
-
-	function getPlayerScores(){
-		coachIds.forEach(coachId => {
-			let $currentPoints = $(`.team a`)
-				.filter(`[href="/team/${coachId}"]`)
-				.closest(`tr`)
-				.find(`td:nth-of-type(7)`);
-			let currentPoints = parseInt($currentPoints.text());
-			let previousPoints = state[`${subleagueName}-previousPoints`][coachId] || 0;
-			let difference = currentPoints - previousPoints;
-			let quantifier = difference >= 0 ? `+` : ``;
-			let trendClassName;
-			
-			if(difference > 0) trendClassName = `positive`;
-			else if(difference < 0) trendClassName = `negative`;
-
-			state[`${subleagueName}-pointDifference`][coachId] = difference;
-			state[`${subleagueName}-previousPoints`][coachId] = currentPoints;
-			$currentPoints.append(`<span class="${trendClassName}">(${quantifier}${difference})</span>`);
-		});
 	}
 	
 	function showTransfersInUI(){
@@ -203,7 +83,6 @@
 
 	function saveDataInLocalstorage(){
 		chrome.storage.local.set({[`${subleagueName}-${year}`]: state[subleagueName]});
-		chrome.storage.local.set({[`${subleagueName}-${year}-previousPoints`]: state[`${subleagueName}-previousPoints`]});
 	}
 
 	function findCurrentRound(){
@@ -220,16 +99,16 @@
 		});*/
 
 		chrome.storage.local.get([`${subleagueName}-${year}`], function(result) {
-			state[subleagueName] = $.extend(state[subleagueName], result[[subleagueName]]);	
+			state[subleagueName] = $.extend(state[subleagueName], result[`${subleagueName}-${year}`]);	
 
 			getPlayerTeams();
 		});
 
-		chrome.storage.local.get([`${subleagueName}-${year}-previousPoints`], function(result) {
+	/*	chrome.storage.local.get([`${subleagueName}-${year}-previousPoints`], function(result) {
 			state[`${subleagueName}-previousPoints`] = $.extend(state[`${subleagueName}-previousPoints`], result[[`${subleagueName}-previousPoints`]]);	
 			
 			getPlayerScores();
-		});
+		});*/
 	}
 
 	function setEvents(){
@@ -264,9 +143,9 @@
 		coachIds.forEach(coachId => {
 			let coach = state[subleagueName][coachId];
 			let thisRoundSquad = coach[currentRound];
-			let mathchFound = thisRoundSquad.map((a) => { 
-				return a.toSimpleStr() 
-			}).includes(searchedPlayer.toSimpleStr());
+			let mathchFound = thisRoundSquad
+				.map((a) => a.toSimpleStr())
+				.includes(searchedPlayer.toSimpleStr());
 
 			if(mathchFound) {
 				$(`.team a`)
@@ -409,7 +288,6 @@
 		
 		findCoachIds();
 		createStateObject();
-		processAdminSettings();
 	
 		if(currentRound > 1) {
 			if(firstTime === true) {
