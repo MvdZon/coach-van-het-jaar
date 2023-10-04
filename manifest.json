@@ -11,5 +11,5 @@
    "name": "Coach van het Jaar Extended",
    "permissions": [ "storage" ],
    "update_url": "https://clients2.google.com/service/update2/crx",
-   "version": "0.16"
+   "version": "0.19"
 }
