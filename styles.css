@@ -10,12 +10,8 @@ body[subleague="Babbelcoach"] #subleague-ranking-table tr[role="row"]:nth-child(
 	background: #52a2374d;
 }
 
-body[subleague="Babbelcoach"] #subleague-ranking-table tr[role="row"]:nth-child(9){
-	background: #ffad564d;
-}
-
 body[subleague="Babbelcoach"] #subleague-ranking-table tr[role="row"]:nth-child(10){
-	background: #ff484f4d;
+	background: #ffad564d;
 }
 
 body[subleague="Babbelcoach"] #subleague-ranking-table tr[role="row"]:nth-child(11){
@@ -23,7 +19,7 @@ body[subleague="Babbelcoach"] #subleague-ranking-table tr[role="row"]:nth-child(
 }
 
 body[subleague="Babbelcoach"] #subleague-ranking-table tr[role="row"]:nth-child(12){
-	background: #ff272f4d;
+	background: #ff484f4d;
 }
 
 body[subleague="Babbelcoach"] #subleague-ranking-table tr[role="row"]:nth-child(13){
@@ -31,6 +27,10 @@ body[subleague="Babbelcoach"] #subleague-ranking-table tr[role="row"]:nth-child(
 }
 
 body[subleague="Babbelcoach"] #subleague-ranking-table tr[role="row"]:nth-child(14){
+	background: #ff272f4d;
+}
+
+body[subleague="Babbelcoach"] #subleague-ranking-table tr[role="row"]:nth-child(15){
 	background: #ff00094d;
 }
 
